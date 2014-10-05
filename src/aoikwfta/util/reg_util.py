@@ -5,6 +5,7 @@ File ID: 6cfsMBp
 
 import re
 
+
 def ext_add_dot(ext):
     """
     |ext| will be added a heading dot if not already has one.
@@ -252,3 +253,24 @@ def hkcr_ext_remove_shellnew(ext):
     
     #/
     return res_txt
+
+#/
+def hkcr_ext_subkey_del(ext, subkey):
+    """
+    #/
+    |ext| will be added a heading dot if not already has one.
+    """
+    #/
+    dot_ext = ext_add_dot(ext)
+
+    #/
+    txt = r'[-HKEY_CLASSES_ROOT\{dot_ext}\{subkey}]'.format(
+        dot_ext=reg_value_escape(dot_ext),
+        subkey=reg_value_escape(subkey),
+    )
+    
+    #/
+    txt += '\n'
+    
+    #/
+    return txt

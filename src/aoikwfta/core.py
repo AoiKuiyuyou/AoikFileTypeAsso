@@ -18,9 +18,11 @@ from aoikwfta.config_const import CFG_K_VAR_D_K__EXT_CLS_PREFIX_V_DFT
 from aoikwfta.config_const import CFG_K_VAR_D_K__SHELLNEW_REMOVE_UNSPECIFIED
 from aoikwfta.util import reg_util
 from aoikwfta.util.reg_util import hkcr_ext_remove_shellnew
+from aoikwfta.util.reg_util import hkcr_ext_subkey_del
+
 
 #/ 8n0H7m6
-def config_parse(ext_d, var_d):
+def config_parse(ext_d, var_d, owp_remove=False):
     """
     Parse config dict, produce registry file data.
     """
@@ -59,6 +61,12 @@ def config_parse(ext_d, var_d):
         
         assert len(ext_cls) > 0
         
+        #/
+        if owp_remove:
+            txt = hkcr_ext_subkey_del(ext=ext, subkey='OpenWithProgids')
+        
+            res_txt_s.append(txt)
+            
         #/ 2rpS10w
         res_txt_s.append(
             reg_util.hkcr_ext_make_attr_dft(

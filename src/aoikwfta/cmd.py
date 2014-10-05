@@ -48,6 +48,12 @@ def main():
         action='store_true',
         help='Import to Windows Registry')
     
+    #/
+    parser.add_argument('-O',
+        dest='owp_remove',
+        action='store_true',
+        help='Remove key "OpenWithProgids".')
+    
     #/ 4hnADY0
     args_obj = parser.parse_args()
     #/ 4e0PxM6
@@ -85,7 +91,9 @@ def main():
     ext_info_s = dict_obj[CFG_K_EXT_INFO_D]
     
     #/ 2iPQrhI
-    res_txt = core.config_parse(ext_info_s, var_d)
+    res_txt = core.config_parse(ext_info_s, var_d,
+        owp_remove=args_obj.owp_remove,
+    )
     
     res_txt_utf8 = res_txt.encode('utf8') if sys.version_info[0] > 2 else res_txt
     
