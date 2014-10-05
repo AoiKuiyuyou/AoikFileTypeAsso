@@ -1,0 +1,8 @@
+*.pyc
+/.*
+!/.gitignore
+/EclipseProject
+/nbproject
+/src/*.egg-info
+/build
+/dist

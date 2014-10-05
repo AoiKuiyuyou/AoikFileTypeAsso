@@ -1,0 +1,122 @@
+#/ File ID: 6w3BBMz
+
+#/ Caveats
+## Modify this config file with your own correct settings
+##  before importing data to Windows Registry.
+
+var_d:
+  _SHELLNEW_REMOVE_UNSPECIFIED: 1
+  
+  TXT_OPEN_CMD: '"D:\Software\Dev\IDE\Notepad++\0\dst\notepad++.exe" "%1" %*'
+  TXT_ICON_PATH: D:\SoftwareData\FileType\TXT\Icon\0.ico
+  7Z_OPEN_CMD: '"D:\Software\Archiving\7-Zip\0\dst\7zFM.exe" "%1" %*'
+  
+ext_d:
+  bat:
+    open: '"%1" %*'
+    edit: TXT_OPEN_CMD
+    icon: D:\SoftwareData\FileType\BAT\Icon\0.ico
+    new: D:\SoftwareData\FileType\BAT\ShellNew\a.bat
+    
+  bmp:
+    open: '"C:\Windows\system32\mspaint.exe" "%1"'
+    icon: '%systemroot%\system32\imageres.dll,-70'
+
+  cfg:
+    open: TXT_OPEN_CMD
+    icon: TXT_ICON_PATH
+
+  conf:
+    open: TXT_OPEN_CMD
+    icon: TXT_ICON_PATH
+
+  config:
+    open: TXT_OPEN_CMD
+    icon: TXT_ICON_PATH
+    
+  css:
+    open: TXT_OPEN_CMD
+    icon: TXT_ICON_PATH
+    
+  csv:
+    open: TXT_OPEN_CMD
+    icon: TXT_ICON_PATH
+    
+  gitignore:
+    open: TXT_OPEN_CMD
+    icon: TXT_ICON_PATH
+
+  ini:
+    open: TXT_OPEN_CMD
+    icon: TXT_ICON_PATH
+    
+  js:
+    open: TXT_OPEN_CMD
+    icon: TXT_ICON_PATH
+
+  log:
+    open: TXT_OPEN_CMD
+    icon: TXT_ICON_PATH
+    
+  lst:
+    open: TXT_OPEN_CMD
+    icon: TXT_ICON_PATH
+
+  md:
+    open: TXT_OPEN_CMD
+    icon: TXT_ICON_PATH
+
+  pdf:
+    open: '"D:\Software\FileType\PDF\Foxit Reader\0\dst\Foxit Reader.exe" "%1" %*'
+    icon: D:\SoftwareData\FileType\PDF\0.ico
+    
+  properties:
+    open: TXT_OPEN_CMD
+    icon: TXT_ICON_PATH
+    
+  txt:
+    open: TXT_OPEN_CMD
+    icon: TXT_ICON_PATH
+    new:
+    
+  tex:
+    open: TXT_OPEN_CMD
+    icon: TXT_ICON_PATH
+    
+  rar:
+    open: 7Z_OPEN_CMD
+    icon: D:\SoftwareData\FileType\RAR\Icon\0.ico
+    
+  reg:
+    open: '"regedit" "%1" %*'
+    edit: TXT_OPEN_CMD
+    icon: D:\SoftwareData\FileType\REG\Icon\0.ico
+    
+  sh:
+    open: TXT_OPEN_CMD
+    icon: TXT_ICON_PATH
+    
+  sql:
+    open: TXT_OPEN_CMD
+    icon: TXT_ICON_PATH
+    
+  whl:
+    open: 7Z_OPEN_CMD
+    icon: D:\SoftwareData\FileType\ZIP\Icon\0.ico
+    
+  xml:
+    open: TXT_OPEN_CMD
+    icon: TXT_ICON_PATH
+    
+  yaml:
+    open: TXT_OPEN_CMD
+    icon: TXT_ICON_PATH
+    
+  zip:
+    open: 7Z_OPEN_CMD
+    icon: D:\SoftwareData\FileType\ZIP\Icon\0.ico
+    
+  7z:
+    open: 7Z_OPEN_CMD
+    icon: D:\SoftwareData\FileType\7Z\Icon\0.ico
+    
