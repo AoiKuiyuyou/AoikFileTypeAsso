@@ -57,7 +57,7 @@ def hkcr_cls_make_defaulticon(cls, icon):
 
 #/ 5kjCjsn
 def hkcr_cls_make_shell_command(cls, cmd_key, cmd_val):
-    """
+    r"""
 #/ For exmaple
 If
  cls = 'aoikwfta.txt'
@@ -219,7 +219,7 @@ def hkcr_ext_make_shellnew(ext, shellnew_info):
     dot_ext = ext_add_dot(ext)
     
     #/
-    shellnew_type = shellnew_info.keys()[0]
+    shellnew_type = next(iter(shellnew_info))
     
     #/
     if shellnew_type == 'NullFile':

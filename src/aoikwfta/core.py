@@ -127,7 +127,7 @@ def config_parse(ext_d, var_d):
         #/
         if cmd_info_s:
             for cmd_info in cmd_info_s:
-                cmd_key = cmd_info.keys()[0]
+                cmd_key = next(iter(cmd_info))
                 cmd_val = cmd_info[cmd_key]
                 
                 if cmd_val in var_d:
@@ -149,7 +149,8 @@ def config_parse(ext_d, var_d):
             #/ 7kA2XGi
             if cmd_info_s:
                 #/ 5irpX2B
-                dft_cmd_key = cmd_info_s[0].keys()[0]
+                dft_cmd_key = next(iter(cmd_info_s[0]))
+                
                 assert dft_cmd_key is not None
             #else 2oD6axR
             

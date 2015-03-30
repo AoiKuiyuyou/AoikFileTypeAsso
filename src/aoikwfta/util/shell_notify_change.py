@@ -7,17 +7,18 @@ import sys
 
 def main():
     #/
-    print >> sys.stderr, '#/ Send shell change notification, to make changes take effect.'
+    sys.stderr.write('#/ Send shell change notification, to make changes take effect.\n')
         
     try:
         import win32com.shell.shell as shell
         import win32com.shell.shellcon as shellcon
     except ImportError:
-        print >> sys.stderr, 'Error:'
-        print >> sys.stderr, 'Importing |win32com| failed.'
-        print >> sys.stderr, 'Please install |pywin32|.'
-        dl_url = r'http://sourceforge.net/projects/pywin32/files/pywin32/'
-        print >> sys.stderr, 'Download is available at {}.'.format(dl_url)
+        sys.stderr.write(r"""Error:
+Importing |win32com| failed.
+Please install |pywin32|.
+Download is available at http://sourceforge.net/projects/pywin32/files/pywin32/
+""")
+        
         return 1
         
     #/
@@ -28,7 +29,7 @@ def main():
         None,
     )
     
-    print >> sys.stderr, 'Ok'
+    sys.stderr.write('OK\n')
     
     #/
     return 0

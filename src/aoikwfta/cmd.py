@@ -23,6 +23,18 @@ import sys
 import tempfile
 import yaml
 
+#/
+if sys.version_info[0] == 2:
+    reload(sys)
+    sys.setdefaultencoding('utf-8') #@UndefinedVariable
+
+#/
+def stdout_write_bytes(bytes):
+    if sys.version_info[0] > 2:
+        sys.stdout.buffer.write(bytes)
+    else:
+        sys.stdout.write(bytes)
+        
 def main():
     #/ 2uYwk0a
     parser = ArgumentParser(prog='PROG')
@@ -46,22 +58,23 @@ def main():
     
     try:
         #/ 6tY207f
-        with open(config_file_path) as config_file_obj:
+        with open(config_file_path, mode='rb') as config_file_obj:
             #/ 8g0anQk
             try:
                 dict_obj = yaml.load(config_file_obj)
             except Exception:
+                
                 #/ 4u4Bhxf
-                print >> sys.stderr, '#/ Error'
-                print >> sys.stderr, 'Parsing config file failed.'
+                sys.stderr.write('#/ Error\n')
+                sys.stderr.write('Parsing config file failed.\n')
                 
                 #/ 2axbv0h
                 return CMD_RET_CODE_V_PARSING_CONFIG_FILE_FAILED
             
     except Exception:
         #/ 3s9B4lm
-        print >> sys.stderr, '#/ Error'
-        print >> sys.stderr, 'Reading config file failed.'
+        sys.stderr.write('#/ Error')
+        sys.stderr.write('Reading config file failed.')
         
         #/ 9cqrvjt
         return CMD_RET_CODE_V_OPENING_CONFIG_FILE_FAILED
@@ -74,13 +87,15 @@ def main():
     #/ 2iPQrhI
     res_txt = core.config_parse(ext_info_s, var_d)
     
+    res_txt_utf8 = res_txt.encode('utf8') if sys.version_info[0] > 2 else res_txt
+    
     #/ 4p6J0rK
     import_to_reg = args_obj.import_to_reg
     
     if not import_to_reg:
         #/ 7xyc66b
-        print 'REGEDIT4\n',
-        print res_txt,
+        stdout_write_bytes(b'REGEDIT4\n')
+        stdout_write_bytes(res_txt_utf8)
         
         #/ 7mHikdk
         return CMD_RET_CODE_V_PRODUCING_REGISTRY_DATA_OK
@@ -88,7 +103,7 @@ def main():
     #/ 2jkggbB
     assert import_to_reg
     
-    print >> sys.stderr, '#/ Import to Windows Registry'
+    sys.stderr.write('#/ Import to Windows Registry\n')
          
     reg_file_path = None
     
@@ -105,8 +120,8 @@ def main():
         
         reg_file_path = file_obj.name
         
-        file_obj.write('REGEDIT4\n')
-        file_obj.write(res_txt)
+        file_obj.write(b'REGEDIT4\n')
+        file_obj.write(res_txt_utf8)
         file_obj.close()
         
         #/ 2thKJr6
@@ -128,20 +143,21 @@ def main():
     #/ 9a7gWwP
     if ret_code == 0:
         #/ 8tBWx3Y
-        print >> sys.stderr, 'Ok'
+        sys.stderr.write('Ok\n')
     else:
         #/ 3oGPSzN
-        print >> sys.stderr, 'Failed'
+        sys.stderr.write('Failed\n')
         
         stderr_bytes = ret_output[1]
          
-        print stderr_bytes
+        sys.stderr.write(stderr_bytes)
+        sys.stderr.write('\n')
         
         #/ 4tlxev2
         return CMD_RET_CODE_V_IMPORTING_TO_REGISTRY_FAILED
     
     #/ 6hVotpt
-    print >> sys.stderr, '#/ Send shell change notification, to make changes take effect.'
+    sys.stderr.write('#/ Send shell change notification, to make changes take effect.\n')
     
     #/ 3djlJqJ
     try:
@@ -149,12 +165,12 @@ def main():
         import win32com.shell.shellcon as shellcon #@UnresolvedImport
     except ImportError:
         #/ 9jmnJR7
-        print >> sys.stderr, 'Failed. Changes may not take effects immediately.'
-        print >> sys.stderr, 'Error:'
-        print >> sys.stderr, 'Importing |win32com| failed.'
-        print >> sys.stderr, 'Please install |pywin32|.'
-        dl_url = r'http://sourceforge.net/projects/pywin32/files/pywin32/'
-        print >> sys.stderr, 'Download is available at {}.'.format(dl_url)
+        sys.stderr.write(r"""Failed. Changes may not take effects immediately.
+Error:
+Importing |win32com| failed.
+Please install |pywin32|.
+Download is available at http://sourceforge.net/projects/pywin32/files/pywin32/
+""")
         
         #/ 3d4HYyD
         return CMD_RET_CODE_V_IMPORTING_WIN32COM_FAILED
@@ -168,7 +184,7 @@ def main():
     )
     
     #/ 4gNKPDp
-    print >> sys.stderr, 'OK'
+    sys.stderr.write('OK\n')
     
     #/ 3wGMLbJ
     return CMD_RET_CODE_V_IMPORTING_TO_REGISTRY_OK
