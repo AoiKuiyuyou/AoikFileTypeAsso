@@ -5,7 +5,7 @@ from setuptools import setup
 setup(
     name='AoikWinFileTypeAsso',
 
-    version='0.1.1',
+    version='0.1.2',
 
     description="""AoikWinFileTypeAsso is a console program that creates Windows Registry files (i.e. ".reg" files) to change file type association settings.""",
 
