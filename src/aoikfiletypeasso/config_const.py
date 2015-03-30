@@ -1,13 +1,14 @@
 # coding: utf-8
-"""
-File ID: 9kn8Nl5
-"""
+from __future__ import absolute_import
 
+
+#/
 CFG_K_VAR_D = 'var_d'
 CFG_K_VAR_D_K__EXT_CLS_PREFIX = '_EXT_CLS_PREFIX'
-CFG_K_VAR_D_K__EXT_CLS_PREFIX_V_DFT = 'aoikwfta.'
+CFG_K_VAR_D_K__EXT_CLS_PREFIX_V_DFT = 'aoikfiletypeasso.'
 CFG_K_VAR_D_K__SHELLNEW_REMOVE_UNSPECIFIED = '_SHELLNEW_REMOVE_UNSPECIFIED'
 
+#/
 CFG_K_EXT_INFO_D = 'ext_d'
 CFG_K_EXT_INFO_K_CLS = 'cls'
 CFG_K_EXT_INFO_K_CLS_FRIENDLY_TYPE_NAME = 'clsftn'
