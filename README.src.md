@@ -1,3 +1,12 @@
+[:var_set('', """
+#/ Compile command
+aoikdyndocdsl -s README.src.md -n aoikdyndocdsl.ext.all::nto -g README.md
+""")
+]\
+[:var_set('cfg1', 'https://github.com/AoiKuiyuyou/AoikFileTypeAssoDemo/blob/0.1/src/config_example.yaml')]\
+[:var_set('cfg2', 'https://github.com/AoiKuiyuyou/AoikFileTypeAssoDemo/blob/0.1/src/config_example2.yaml')]\
+[:var_set('aoikfiletypeassodemo', 'https://github.com/AoiKuiyuyou/AoikFileTypeAssoDemo')]\
+[:HDLR('heading', 'heading')]\
 # AoikFileTypeAsso
 Creates Windows Registry files (i.e. **.reg** files) to change file type
  association settings, including
@@ -15,14 +24,7 @@ Tested working with:
 - Python 2.7+, 3.2+
 
 ## Table of Contents
-- [How it works](#how-it-works)
-- [Program Setup](#program-setup)
-  - [Setup of PyYAML](#setup-of-pyyaml)
-  - [Setup of PyWin32](#setup-of-pywin32)
-  - [Setup of AoikFileTypeAsso](#setup-of-aoikfiletypeasso)
-  - [Find entry program](#find-entry-program)
-- [Program Usage](#program-usage)
-- [Config Syntax](#config-syntax)
+[:toc(beg='next', indent=-1)]
 
 ## How it works
 Under Windows Registry's key **HKEY_CLASSES_ROOT**, there are
@@ -54,10 +56,7 @@ What AoikFileTypeAsso does is generate registry file data that associates
  generated registry file data to Windows Registry, the changes will take effect.
 
 ## Program Setup
-- [Setup of PyYAML](#setup-of-pyyaml)
-- [Setup of PyWin32](#setup-of-pywin32)
-- [Setup of AoikFileTypeAsso](#setup-of-aoikfiletypeasso)
-- [Find entry program](#find-entry-program)
+[:tod()]
 
 ### Setup of PyYAML
 Run
@@ -105,12 +104,12 @@ python src/aoikfiletypeasso/main/aoikfiletypeasso.py
 Command **aoikfiletypeasso** takes a config file path as argument.
 
 The syntax of the config file is very simple:
-- [config_example.yaml](https://github.com/AoiKuiyuyou/AoikFileTypeAssoDemo/blob/0.1/src/config_example.yaml) is a minimum example.  
-- [config_example2.yaml](https://github.com/AoiKuiyuyou/AoikFileTypeAssoDemo/blob/0.1/src/config_example2.yaml) is a practical example.  
+- [config_example.yaml]([:var('cfg1')]) is a minimum example.  
+- [config_example2.yaml]([:var('cfg2')]) is a practical example.  
 
-See config demos [here](https://github.com/AoiKuiyuyou/AoikFileTypeAssoDemo).
+See config demos [here]([:var('aoikfiletypeassodemo')]).
 
-See config syntax [here](#config-syntax).
+See config syntax [here]([:hd_url('config_syntax')]).
 
 Given a config file, command **aoikfiletypeasso** generates registry file data.
 
@@ -151,7 +150,8 @@ aoikfiletypeasso -c config_example.yaml -i -O
 ```
 
 ## Config Syntax
-See config demos [here](https://github.com/AoiKuiyuyou/AoikFileTypeAssoDemo).
+[:hd_to_key('config_syntax')]\
+See config demos [here]([:var('aoikfiletypeassodemo')]).
 
 Syntax:
 ```

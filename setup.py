@@ -1,15 +1,21 @@
+# coding: utf-8
+from __future__ import absolute_import
+
 import os
+
 from setuptools import find_packages
 from setuptools import setup
 
+
+#/
 setup(
-    name='AoikWinFileTypeAsso',
+    name='AoikFileTypeAsso',
 
-    version='0.1.2',
+    version='0.2',
 
-    description="""AoikWinFileTypeAsso is a console program that creates Windows Registry files (i.e. ".reg" files) to change file type association settings.""",
+    description="""Creates Windows Registry files (i.e. ".reg" files) to change file type association settings.""",
 
-    url='https://github.com/AoiKuiyuyou/AoikWinFileTypeAsso',
+    url='https://github.com/AoiKuiyuyou/AoikFileTypeAsso',
 
     author='Aoi.Kuiyuyou',
 
@@ -32,28 +38,20 @@ setup(
         'Programming Language :: Python :: 3.4',
     ],
 
-    keywords='Windows Registry File Extension File Type Association',
+    keywords='windows registry file extension file type association',
 
     install_requires=[
-        'pyyaml',
-        #'pywin32',
-        ## pywin32 cannot be installed via PyPI so do not list it here.
+        'PyYAML',
+        #'pywin32', # Not installable via PyPI.
     ],
 
     package_dir = {'':'src'},
 
-    packages=find_packages('src', exclude=['contrib', 'docs', 'tests*']),
-
-    package_data={
-        'aoikwfta': [
-            '*.yaml',
-            '*.txt',
-        ],
-    },
+    packages=find_packages('src'),
 
     entry_points={
         'console_scripts': [
-            'aoikwfta=aoikwfta.cmd:main',
+            'aoikfiletypeasso=aoikfiletypeasso.main.aoikfiletypeasso:main',
         ],
     },
 )
